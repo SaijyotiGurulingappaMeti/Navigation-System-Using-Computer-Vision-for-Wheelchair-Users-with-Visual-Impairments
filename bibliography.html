@@ -7,35 +7,19 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
     body { font-family: var(--font-sans); line-height: 1.6; padding: 2rem; background-color: var(--background); color: var(--foreground); }
-    h1 { color: #0d6914; border-left: 4px solid #0d6914; padding-left: 0.75rem; margin-bottom: 1rem;  margin-top: 2rem; }
+    h1 { color: #0d6914; border-left: 4px solid #0d6914; padding-left: 0.75rem; margin-bottom: 1rem; margin-top: 2rem; }
     ul { margin-left: 2rem; }
-    li { margin-bottom: 0.75rem; }
+    li { margin-bottom: 1.25rem; }
     a { color: #0d6914; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    
-    /* Body consistent with other pages */
-    /* Body consistent with other pages */
-    /* Remove default body margin/padding */
 
-
-    /* Header styling to stick at top */
-    .header {
-      position: sticky;
-      top: 0;
-      width: 100%;
-      background-color: #ffffff;
-      border-bottom: 1px solid var(--border);
-      z-index: 100;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    }
-
-
+    .synopsis { font-size: 0.95rem; color: #444; margin-top: 0.25rem; }
+    .reliability { font-size: 0.9rem; color: #0d6914; font-weight: bold; }
   </style>
 </head>
 <body>
   <header class="header">
     <div class="container header-content">
-
       <nav class="nav-desktop">
         <a href="index.html" class="navbrand">CV Navigation</a>
         <a href="home.html">Home</a>
@@ -49,24 +33,74 @@
     </div>
   </header>
 
-
   <h1>Bibliography</h1>
 
   <ul>
-    <!-- Original References -->
-    <li>M. Coughlan and H. Shen, “Terrain analysis for blind wheelchair users: Computer vision algorithms for finding curbs and other negative obstacles.” in CVHI, 2007.</li>
-    <li>B. Li et al., "Vision-Based Mobile Indoor Assistive Navigation Aid for Blind People," in IEEE Transactions on Mobile Computing, vol. 18, no. 3, pp. 702-714, 1 March 2019, doi: 10.1109/TMC.2018.2842751.</li>
-    <li>M. Z. Hasan, S. Sikder and M. A. Rahaman, "Real-Time Computer Vision Based Autonomous Navigation System for Assisting Visually Impaired People using Machine Learning," 2022 4th International Conference on Sustainable Technologies for Industry 4.0 (STI), Dhaka, Bangladesh, 2022, pp. 1-6, doi: 10.1109/STI56238.2022.10103268.</li>
-    <li>Kim, Eun. (2016). Wheelchair Navigation System for disabled and Elderly People. Sensors. 16. 1806. 10.3390/s16111806.</li>
+    <li>
+      M. Coughlan and H. Shen, “Terrain analysis for blind wheelchair users: Computer vision algorithms for finding curbs and other negative obstacles.” in CVHI, 2007.
+      <div class="synopsis">Presents early computer vision methods to detect curbs and negative obstacles for blind wheelchair users. Useful but dated, tested on limited conditions.</div>
+      <div class="reliability">Reliability: Moderate — older work with limited validation.</div>
+    </li>
 
-    <!-- Recent References 2022-2025 -->
-    <li>Yu, H., & Saniie, J. (2025). <em>Visual Impairment Spatial Awareness (VISA) Method for Indoor Navigation</em>. Nature Machine Intelligence. <a href="https://www.nature.com/articles/s41598-025-14946-5?utm_source=chatgpt.com" target="_blank">https://www.nature.com/articles/s41598-025-14946-5</a></li>
-    <li>ResearchGate. (2025). <em>Smart Wheelchair Controlled Through a Vision-Based Autonomous System</em>. <a href="https://www.researchgate.net/publication/380298871_Smart_wheelchair_controlled_through_a_vision-based_autonomous_system?utm_source=chatgpt.com" target="_blank">https://www.researchgate.net/publication/380298871_Smart_wheelchair_controlled_through_a_vision-based_autonomous_system</a></li>
-    <li>Slavin, T. et al. (2022). <em>Vision-Based Low-Cost Power Wheelchair Assistive Driving System for Smartphones</em>. CSPECC, UTSA. <a href="https://cspecc.utsa.edu/publications/files/Refereed_Papers/2022-Slavin-A%20Vision-Based%20Low-Cost%20Power%20Wheelchair%20Assistive%20Driving%20System%20for%20Smartphones.pdf?utm_source=chatgpt.com" target="_blank">Link</a></li>
-    <li>PathFinder Team. (2025). <em>Map-less Navigation Using Monocular Depth Estimation and Vision-Language Models</em>. arXiv. <a href="https://arxiv.org/html/2504.20976v1?utm_source=chatgpt.com" target="_blank">https://arxiv.org/html/2504.20976v1</a></li>
-    <li>ScienceDirect. (2024). <em>A Comprehensive Review of Navigation Systems for Visually Impaired Individuals</em>. <a href="https://www.sciencedirect.com/science/article/pii/S2405844024078563?utm_source=chatgpt.com" target="_blank">https://www.sciencedirect.com/science/article/pii/S2405844024078563</a></li>
-    <li>ACM Digital Library. (2025). <em>A Survey on Assistive Technologies for Visually Impaired Individuals</em>. <a href="https://dl.acm.org/doi/10.1145/3733155.3734895?utm_source=chatgpt.com" target="_blank">https://dl.acm.org/doi/10.1145/3733155.3734895</a></li>
+    <li>
+      B. Li et al., "Vision-Based Mobile Indoor Assistive Navigation Aid for Blind People," in IEEE Transactions on Mobile Computing, vol. 18, no. 3, pp. 702-714, 1 March 2019, doi: 10.1109/TMC.2018.2842751.
+      <div class="synopsis">Proposes a vision-based indoor navigation system with SLAM and obstacle detection, validated in complex environments.</div>
+      <div class="reliability">Reliability: High — peer-reviewed in a top IEEE journal, strong validation.</div>
+    </li>
+
+    <li>
+      M. Z. Hasan, S. Sikder and M. A. Rahaman, "Real-Time Computer Vision Based Autonomous Navigation System for Assisting Visually Impaired People using Machine Learning," 2022 4th International Conference on Sustainable Technologies for Industry 4.0 (STI), Dhaka, Bangladesh, 2022, pp. 1-6, doi: 10.1109/STI56238.2022.10103268.
+      <div class="synopsis">Introduces a real-time ML-based system for obstacle detection and path planning to assist visually impaired users.</div>
+      <div class="reliability">Reliability: Moderate — innovative but validated on limited datasets.</div>
+    </li>
+
+    <li>
+      Kim, Eun. (2016). Wheelchair Navigation System for disabled and Elderly People. Sensors. 16. 1806. 10.3390/s16111806.
+      <div class="synopsis">Presents a smart wheelchair using sensors and vision for safe navigation, aimed at elderly and disabled users.</div>
+      <div class="reliability">Reliability: High — published in a strong journal with practical experiments.</div>
+    </li>
+
+    <li>
+      Yu, H., & Saniie, J. (2025). <em>Visual Impairment Spatial Awareness (VISA) Method for Indoor Navigation</em>. Nature Machine Intelligence. 
+      <a href="https://www.nature.com/articles/s41598-025-14946-5?utm_source=chatgpt.com" target="_blank">Link</a>
+      <div class="synopsis">Introduces VISA, an AI-based spatial awareness method for real-time indoor navigation of visually impaired users.</div>
+      <div class="reliability">Reliability: Very High — recent and published in a leading AI journal.</div>
+    </li>
+
+    <li>
+      ResearchGate. (2025). <em>Smart Wheelchair Controlled Through a Vision-Based Autonomous System</em>. 
+      <a href="https://www.researchgate.net/publication/380298871_Smart_wheelchair_controlled_through_a_vision-based_autonomous_system?utm_source=chatgpt.com" target="_blank">Link</a>
+      <div class="synopsis">Explores vision-based smart wheelchair control for autonomous navigation and user independence.</div>
+      <div class="reliability">Reliability: Low — preprint without peer review, not formally validated.</div>
+    </li>
+
+    <li>
+      Slavin, T. et al. (2022). <em>Vision-Based Low-Cost Power Wheelchair Assistive Driving System for Smartphones</em>. CSPECC, UTSA. 
+      <a href="https://cspecc.utsa.edu/publications/files/Refereed_Papers/2022-Slavin-A%20Vision-Based%20Low-Cost%20Power%20Wheelchair%20Assistive%20Driving%20System%20for%20Smartphones.pdf?utm_source=chatgpt.com" target="_blank">Link</a>
+      <div class="synopsis">Proposes a smartphone-based affordable wheelchair assistive driving system using vision algorithms.</div>
+      <div class="reliability">Reliability: Moderate to Low — smaller venue, exploratory validation.</div>
+    </li>
+
+    <li>
+      PathFinder Team. (2025). <em>Map-less Navigation Using Monocular Depth Estimation and Vision-Language Models</em>. arXiv. 
+      <a href="https://arxiv.org/html/2504.20976v1?utm_source=chatgpt.com" target="_blank">Link</a>
+      <div class="synopsis">Develops a flexible map-less navigation approach combining depth estimation and vision-language reasoning.</div>
+      <div class="reliability">Reliability: Moderate — cutting-edge but only a preprint, not yet peer-reviewed.</div>
+    </li>
+
+    <li>
+      ScienceDirect. (2024). <em>A Comprehensive Review of Navigation Systems for Visually Impaired Individuals</em>. 
+      <a href="https://www.sciencedirect.com/science/article/pii/S2405844024078563?utm_source=chatgpt.com" target="_blank">Link</a>
+      <div class="synopsis">Provides a broad review of navigation systems for visually impaired users, covering sensors, vision, and AI approaches.</div>
+      <div class="reliability">Reliability: High — peer-reviewed review, strong for background context.</div>
+    </li>
+
+    <li>
+      ACM Digital Library. (2025). <em>A Survey on Assistive Technologies for Visually Impaired Individuals</em>. 
+      <a href="https://dl.acm.org/doi/10.1145/3733155.3734895?utm_source=chatgpt.com" target="_blank">Link</a>
+      <div class="synopsis">Survey of assistive technologies such as wearables, smart wheelchairs, and AI navigation aids.</div>
+      <div class="reliability">Reliability: Very High — ACM peer-reviewed, comprehensive and up-to-date.</div>
+    </li>
   </ul>
-
 </body>
 </html>
