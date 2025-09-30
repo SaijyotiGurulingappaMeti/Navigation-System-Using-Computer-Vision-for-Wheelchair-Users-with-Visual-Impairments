@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Challenges & Future Work</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* Inline styling for vertical line like Future Work */
+    h2, h3 {
+      border-left: 4px solid #0d6914; /* green vertical line */
+      padding-left: 0.75rem;
+      color: #0d6914;
+      margin-bottom: 1rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <nav class="nav-desktop">
+        <a href="index.html?reload=true" class="navbrand">CV Navigation</a>
+        <a href="home.html">Home</a>
+        <a href="concepts.html">Concepts</a>
+        <a href="algorithms.html">Algorithms</a>
+        <a href="implementations.html">Implementations</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="bibliography.html">Bibliography</a>
+        <a href="quiz.html" class="nav-right">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <main class="container">
+    <h1 style="border-left: 4px solid #0d6914; padding-left: 0.75rem; color: #0d6914; margin-bottom: 1rem;">Challenges</h1>
+    <p>
+
+      Navigating safely is a major concern for blind wheelchair users. 
+      In this section, we explore the technical, environmental, and user-related challenges faced by such systems, 
+      followed by possible directions for future improvements to enhance safety, reliability, and user experience.
+    </p>
+
+      <section>
+
+
+        <h2>Audio</h2>
+      
+        <audio controls style="width:100%;">
+
+
+            <source src="audio/challenges.m4a" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+    </section>
+
+
+    <section>
+      <h3>Technical Challenges</h3>
+      <ul>
+        <li>Stereo vision depth maps are noisy, especially for small curbs at a distance.</li>
+        <li>Algorithms for terrain detection and path planning require high computation power.</li>
+        <li>Affordable hardware has limited processing capacity for real-time vision.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Environmental Challenges</h3>
+      <ul>
+        <li>Strong sunlight, shadows, or nighttime reduce camera accuracy.</li>
+        <li>Reflections from wet pavement or glass can cause misclassification.</li>
+        <li>Moving obstacles like cars, bicycles, and pedestrians are harder to detect and predict.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>User-Related Challenges</h3>
+      <ul>
+        <li>Too many alerts (audio or tactile) can overwhelm the user.</li>
+        <li>Feedback must be minimal, clear, and actionable (e.g., “turn left” instead of continuous beeps).</li>
+        <li>Systems must balance autonomy with user control so that users feel safe and independent.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Future Work</h2>
+      <ul>
+
+
+        <li>Increase robustness so the wheelchair can handle all lighting conditions, including bright sunlight, shadows, and nighttime. This may be achieved by combining regular cameras with infrared or depth cameras.</li>
+        <li>Improve dynamic obstacle handling—future systems should detect static curbs and objects and also track and predict the movement of pedestrians, bicycles, or vehicles in real time.</li>
+        <li>Use advances in embedded AI hardware to run complex vision algorithms on low-cost processors, making the system faster and more practical for everyday use.</li>
+        <li>Enhance user interaction by providing multimodal feedback (speech, tones, vibrations) that adapts to the user’s preference, ensuring guidance is clear but not overwhelming.</li>
+        <li>Research adaptive autonomy, allowing the system to balance giving full control to the user and automatically intervening to prevent accidents, enabling blind users to feel both safe and independent.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Vision Algorithms</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Colors */
+      --background: #f9fafb;
+      --foreground: #1a1a1a;
+      --primary: #0d6914; /* updated theme color */
+      --primary-foreground: #ffffff;
+      --secondary: #eef2f3;
+      --secondary-foreground: #0d6914;
+      --muted: #f5f5f5;
+      --muted-foreground: #6b7280;
+      --accent: #e8f5e8;
+      --accent-foreground: #0d6914;
+      --border: #e5e7eb;
+      --card: #ffffff;
+      --card-foreground: #1a1a1a;
+
+      /* Typography */
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      /* Layout */
+      --container-max-width: 1100px;
+      --container-padding: 1.5rem;
+
+      /* Border radius */
+      --radius: 0.75rem;
+      --radius-sm: 0.5rem;
+      --radius-lg: 1rem;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+      padding: 0 var(--container-padding);
+    }
+
+    /* Page Title */
+    .page-header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+
+    .page-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+      color: var(--muted-foreground);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Section Styles */
+    section {
+      margin: 2.5rem 0;
+      padding: 2rem;
+      background-color: var(--card);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    section:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    section h2 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: var(--primary);
+      border-left: 4px solid var(--accent-foreground);
+      padding-left: 0.75rem;
+    }
+
+    section p {
+      margin-bottom: 1rem;
+    }
+
+    /* Demo Buttons */
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: var(--radius-sm);
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+      margin-top: 10px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0a4e0f;
+    }
+
+    /* Demo Containers */
+    .demo-container {
+      display: none;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .demo-container img {
+      max-width: 45%;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 4rem;
+      background-color: var(--foreground);
+      color: var(--background);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 1.75rem;
+      }
+      section {
+        padding: 1.5rem;
+      }
+    }
+
+    .demo-container {
+    display: none;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1rem;
+    }
+
+    figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1; /* allow both figures to grow equally */
+    }
+
+    figure img {
+    width: 100%;
+    max-width: 500px; /* control max size */
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    figcaption {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary);
+    text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+
+    
+    <header class="header">
+        <div class="container header-content">
+
+            <nav class="nav-desktop">
+
+                <a href="index.html?reload=true" class="navbrand">CV Navigation</a>
+                <a href="home.html">Home</a>
+                <a href="concepts.html">Concepts</a>
+                <a href="algorithms.html">Algorithms</a>
+                <a href="implementations.html">Implementations</a>
+                <a href="challenges.html">Challenges</a>
+                <a href="bibliography.html">Bibliography</a>
+                <a href="quiz.html" class="nav-right">Quiz</a>
+            </nav>
+        </div>
+  </header>
+
+
+  <div class="container">
+    <section>
+
+      <h1 style="border-left: 4px solid #0d6914; padding-left: 0.75rem; color: #0d6914; margin-bottom: 1rem;">Computer Vison Algorithms</h1>
+      <p>This section explores key computer vision algorithms such as stereo vision, texture and shape filtering, and background subtraction. Interactive demos allow users to see how these algorithms detect obstacles, classify terrain, and plan safe paths in real-time, highlighting their potential for enhancing navigation for blind wheelchair users</p>
+
+    </section>
+      <section>
+
+
+        <h2>Audio</h2>
+      
+        <audio controls style="width:100%;">
+
+
+            <source src="audio/algorithms.m4a" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+    </section>
+
+    <!-- 1. Stereo Vision -->
+    <section>
+        <h2>1. Stereo Vision & Disparity Maps</h2>
+        <p>
+            Two cameras act like a pair of eyes, capturing left and right views.  
+            A disparity map is created by comparing pixel differences, helping estimate depth and detect obstacles.
+        </p>
+        <button onclick="toggleDemo('stereoDemo')">Show Demo</button>
+        <div class="demo-container" id="stereoDemo">
+            <figure>
+            <img src="images/pic9.jpg" alt="Disparity Map">
+            <figcaption>Disparity Map</figcaption>
+            </figure>
+            <figure>
+            <img src="images/pic8.gif" alt="Stereo Vision Demo">
+            <figcaption>Stereo Vision Demo</figcaption>
+            </figure>
+        </div>
+    </section>
+
+
+
+
+    <!-- 2. Texture & Shape Filtering -->
+    <section>
+      <h2>2. Texture & Shape Filtering (HOG Features)</h2>
+      <p>
+        Beyond depth, we need to recognize textures and shapes.  
+        The algorithm uses HOG(Histogram of Oriented Gradients) features to highlight edges and patterns, helping classify surfaces like smooth roads, grassy patches, or uneven terrain.
+      </p>
+      <button onclick="toggleDemo('hogDemo')">Show Demo</button>
+      <div class="demo-container" id="hogDemo">
+        <img src="images/pic10.png" alt="HOG Features Visualization">
+      </div>
+    </section>
+
+    <!-- 3. Background Subtraction -->
+    <section>
+      <h2>3. Background Subtraction & Occupancy Grids</h2>
+      <p>
+        To detect moving objects or obstacles, the system uses background subtraction to highlight changes in the scene.  
+        These changes are mapped into an occupancy grid to decide safe paths for navigation.
+      </p>
+      <button onclick="toggleDemo('backgroundDemo')">Show Demo</button>
+      <div class="demo-container" id="backgroundDemo">
+        <img src="images/pic11.jpg" alt="Background Subtraction Example">
+      </div>
+    </section>
+    <section>
+    <h2 style="border-left: 4px solid #0d6914; padding-left: 0.75rem; color:#0d6914; margin-top: 2rem;">
+      Overall Working Flowchart
+    </h2>
+
+    <div style="text-align: center; margin: 2rem 0;">
+      <img src="images/pic14.png" alt="Wheelchair Navigation Flowchart" style="max-width: 90%; height: auto; border: 2px solid #0d6914; border-radius: 8px; padding: 8px;">
+      <figcaption style="text-align: center; font-style: italic; color:#0d6914; margin-top: 0.5rem;">
+        Flowchart showing the overall working of the wheelchair navigation system
+      </figcaption>
+    </div>
+
+    <p style="margin-top: 1rem; line-height: 1.6;">
+      The flowchart above summarizes how the computer vision–based wheelchair navigation system works. 
+      First, the system collects input from cameras (stereo vision) and sensors. Preprocessing is applied to clean 
+      and enhance the images. Next, important features are extracted using algorithms like stereo vision for depth 
+      estimation, texture filtering for surface classification, and background subtraction for detecting moving objects. 
+      Based on these features, the system performs obstacle and terrain detection to identify safe or unsafe paths. 
+      Then, a path planning module powered by machine learning/AI selects the optimal route. 
+      The system provides feedback to the user through audio or vibration cues, and finally, movement control is executed 
+      in coordination with the wheelchair’s motor system. This process continues in a loop until the destination is reached.
+    </p>
+  </section>
+
+
+  </div>
+  <script>
+
+    function toggleDemo(id) {
+      const demo = document.getElementById(id);
+      if (demo.style.display === "none") {
+        demo.style.display = "flex";
+      } else {
+        demo.style.display = "none";
+      }
+    }
+  </script>
+
+
+</body>
+</html>

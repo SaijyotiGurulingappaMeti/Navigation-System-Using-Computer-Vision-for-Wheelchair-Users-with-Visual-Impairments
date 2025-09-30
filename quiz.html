@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1</title>
+    <link rel="stylesheet" href="assets/css/quiz.css">
+</head>
+<body>
+
+    <div class="quiz-container">
+        <header class="quiz-header">
+            <h1>Quiz</h1>
+            <p>Test your knowledge</p>
+        </header>
+
+        <div class="quiz-content">
+            <div class="question-counter">
+                <span id="current-question">1</span> / <span id="total-questions">5</span>
+            </div>
+
+            <div class="quiz-card" id="quiz-card">
+                <div class="card-inner">
+                    <!-- Front of card - Question -->
+                    <div class="card-front">
+                        <div class="question-section">
+                            <h2 id="question-text">Which sensor is most commonly used in traditional wheelchair navigation?</h2>
+                        </div>
+                        <div class="options-section">
+                            <button class="option-btn" data-option="A">
+                                <span class="option-letter">A</span>
+                                <span class="option-text">Ultrasonic Sensors</span>
+                            </button>
+                            <button class="option-btn" data-option="B">
+                                <span class="option-letter">B</span>
+                                <span class="option-text">Camera</span>
+                            </button>
+                            <button class="option-btn" data-option="C">
+                                <span class="option-letter">C</span>
+                                <span class="option-text">GPS</span>
+                            </button>
+                            <button class="option-btn" data-option="D">
+                                <span class="option-letter">D</span>
+                                <span class="option-text">None of the above</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Back of card - Answer -->
+                    <div class="card-back">
+                        <div class="answer-section">
+                            <div class="result-icon" id="result-icon">
+                                <div class="icon"></div>
+                            </div>
+                            <h3 id="result-text">Correct!</h3>
+                            <div class="correct-answer">
+                                <p><strong>Correct Answer:</strong></p>
+                                <p id="correct-answer-text">A. Ultrasonic Sensors</p>
+                            </div>
+                            <div class="explanation">
+                                <p id="explanation-text">For traditional wheelchair navigation, the most commonly used sensor is the Ultrasonic sensor ✅.
+                                  👉 That’s because ultrasonic sensors are inexpensive, reliable, and widely used for obstacle detection and avoidance in assistive mobility devices.</p>
+                            </div>
+                            <button class="next-btn" id="next-btn">Next Question</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-complete" id="quiz-complete" style="display: none;">
+            <div class="completion-card">
+                <div class="completion-icon">🎉</div>
+                <h2>Quiz Complete!</h2>
+                <p>You scored <span id="final-score">0</span> out of <span id="final-total">5</span></p>
+                <div class="score-percentage" id="score-percentage">0%</div>
+                <button class="restart-btn" id="restart-btn">Take Quiz Again</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="assets/js/quiz.js"></script>
+</body>
+</html>

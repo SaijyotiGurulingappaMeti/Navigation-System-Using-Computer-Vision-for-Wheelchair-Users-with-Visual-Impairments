@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Implementations — CV Navigation</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    h1 { 
+      color: #0d6914; 
+      margin-top: 2rem; 
+      border-left: 4px solid #0d6914; 
+      padding-left: 0.75rem; 
+      margin-bottom: 1rem; 
+    }
+    section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    section h2 {
+      color: #0d6914;
+      margin-bottom: 1rem;
+    }
+    section p {
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+    img {
+      display: block;
+      margin: 1.5rem auto;
+      width: 50%;
+      max-width: 1000px;
+      max-height: 500px;
+      height: 300px;
+      border-radius: 8px;
+    }
+    figcaption {
+      text-align: center;
+      font-style: italic;
+      margin-top: 0.5rem;
+      margin-bottom: 2rem;
+      color: #0d6914;
+    }
+    .intro {
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <nav class="nav-desktop">
+        <a href="index.html" class="navbrand">CV Navigation</a>
+        <a href="home.html">Home</a>
+        <a href="concepts.html">Concepts</a>
+        <a href="algorithms.html">Algorithms</a>
+        <a href="implementations.html">Implementations</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="bibliography.html">Bibliography</a>
+        <a href="quiz.html" class="nav-right">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Implementation / Expected Results</h1>
+    <p class="intro">
+      In this section, we will explore how the previously discussed algorithms can be applied in real wheelchair navigation systems.
+      It also highlights the expected results and benefits each algorithm brings to improving safety and independence for blind users.
+    </p>
+      <section>
+
+
+        <h2>Audio</h2>
+      
+        <audio controls style="width:100%;">
+
+
+            <source src="audio/implementations.m4a" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+    </section>
+
+    <!-- Stereo Vision -->
+    <section>
+      <h2>Stereo Vision & Disparity Maps</h2>
+      <p><strong>Implementation:</strong> Dual cameras capture left and right views. A disparity map is computed to estimate depth. The wheelchair uses this to detect curbs, drop-offs, and obstacles in real-time.</p>
+      <p><strong>Expected Results:</strong> Accurate depth measurements within 0.5–5 meters. Users receive timely warnings before obstacles, improving safety indoors and outdoors.</p>
+    </section>
+
+    <!-- Texture & Shape Filtering -->
+    <section>
+      <h2>Texture & Shape Filtering (HOG Features)</h2>
+      <p><strong>Implementation:</strong> Image blocks are analyzed for textures and edges using HOG. Surfaces like sidewalks, grass, or roads are classified. Shape analysis identifies intersections and pathways.</p>
+      <p><strong>Expected Results:</strong> Classifies safe paths vs obstacles with ~90% accuracy in controlled environments. Improves route planning and prevents navigation errors.</p>
+    </section>
+
+    <!-- Background Subtraction -->
+    <section>
+      <h2>Background Subtraction & Occupancy Grids</h2>
+      <p><strong>Implementation:</strong> Moving objects (pedestrians, vehicles) are detected using background subtraction. Occupancy grids map safe and risky zones. Machine learning classifiers decide the wheelchair's next action.</p>
+      <p><strong>Expected Results:</strong> Real-time detection of dynamic obstacles. Enhanced safety and collision avoidance in crowded or changing environments.</p>
+    </section>
+
+    <!-- Images -->
+    <section>
+      <img src="images/pic12.png" alt="Wheelchair navigating pathway">
+      <figcaption>Stereo Vision / Navigation Demo</figcaption>
+
+      <img src="images/pic13.png" alt="Terrain Analysis Results">
+      <figcaption>Texture & Terrain Analysis Results</figcaption>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concepts - CV Navigation for Wheelchairs</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    /* Accordion Styles */
+    .accordion {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      width: 100%;
+      border: none;
+      border-radius: var(--radius-sm);
+      text-align: left;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      transition: background-color 0.2s;
+    }
+    .accordion:hover { background-color: #245032; }
+    .panel {
+      padding: 0 1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      background-color: var(--secondary);
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
+    }
+    /* Add arrow icon inside accordion */
+    .accordion::after {
+      content: "▼"; /* Downward arrow */
+      float: right;
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+      font-size: 0.8rem;
+    }
+
+    /* Rotate arrow when active */
+    .accordion.active::after {
+      transform: rotate(-180deg); /* Pointing up */
+    }
+
+
+    /* Hover tooltip for images */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 200px;
+      background-color: var(--foreground);
+      color: var(--background);
+      text-align: center;
+      border-radius: var(--radius-sm);
+      padding: 0.5rem;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%; 
+      left: 50%;
+      margin-left: -100px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Feedback Buttons */
+    .feedback-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      background-color: var(--accent);
+      color: var(--primary);
+      cursor: pointer;
+      margin-right: 1rem;
+      margin-top: 1rem;
+    }
+    .feedback-btn:hover { background-color: var(--primary); color: var(--primary-foreground); }
+
+    /* Image Styling */
+    .concept-image {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 1rem auto;
+      border-radius: var(--radius-sm);
+    }
+
+    .concept-image {
+        width: 100%;
+        max-width: 300px; /* smaller size */
+        display: block;
+        margin: 1rem auto; /* center horizontally */
+        border-radius: var(--radius-sm);
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header class="header">
+    <div class="container header-content">
+      <nav class="nav-desktop">
+        <a href="index.html" class="navbrand">CV Navigation</a>
+        <a href="home.html">Home</a>
+        <a href="concepts.html">Concepts</a>
+        <a href="algorithms.html">Algorithms</a>
+        <a href="implementations.html">Implementations</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="bibliography.html">Bibliography</a>
+        <a href="quiz.html" class="nav-right">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+
+        <h2>Concepts: Safe Navigation for Blind Wheelchair Users</h2>
+
+        <p>
+            Navigating the world as a blind wheelchair user is more than just moving from point A to B—it is a constant challenge 
+            filled with potential hazards. Everyday situations such as approaching curbs, encountering sudden drop-offs, 
+            or crossing busy intersections can quickly become dangerous without reliable awareness of the surroundings.
+        </p>
+        <p>
+            In this section, we will explore <strong>Previous approaches</strong> that tried to make navigation safer, 
+            from ultrasonic sensors to LIDAR systems, highlighting what worked and what limitations remained. 
+            Following that, we will introduce the <strong>Proposed computer vision–based solution</strong> that combines smart cameras 
+            and real-time feedback to empower blind wheelchair users with safer, more independent mobility.
+        </p>
+    </section>
+      <section>
+
+
+        <h2>Audio</h2>
+      
+        <audio controls style="width:100%;">
+
+
+            <source src="audio/concepts.m4a" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+    </section>
+
+
+    <section>
+      <h2>Previous Approaches</h2>
+
+      <button class="accordion">Ultrasonic Sensors</button>
+      <div class="panel">
+      <img src="images/pic2.jpg" alt="Ultrasonic Sensor" class="concept-image">
+        <ul>
+          <li>Invented as a low-cost solution, ultrasonic sensors were designed to detect nearby obstacles using sound waves.</li>
+          <li>They were implemented on early wheelchairs to alert users when approaching walls or objects.</li>
+          <li>While helpful indoors, their short range and poor angular resolution meant small obstacles or flat hazards were often missed.</li>
+          <li>Due to these limitations, they could not ensure safe navigation in complex real-world environments, especially outdoors.</li>
+        </ul>
+      </div>
+
+      <button class="accordion">Infrared (IR) Sensors</button>
+      <div class="panel">
+      <img src="images/pic3.png" alt="Ultrasonic Sensor" class="concept-image">
+        <ul>
+          <li>IR sensors offered a lightweight and simple approach to obstacle detection using light reflection.</li>
+          <li>They were effective in controlled indoor spaces like hallways and rooms, helping prevent collisions.</li>
+          <li>However, sensitivity to sunlight and reflective surfaces caused unreliable readings outdoors.</li>
+          <li>These drawbacks prevented IR-based systems from being widely adopted for everyday independent mobility.</li>
+        </ul>
+      </div>
+
+      <button class="accordion">LiDAR</button>
+      <div class="panel">
+      <img src="images/pic4.jpg" alt="Ultrasonic Sensor" class="concept-image">
+        <ul>
+          <li>LIDAR uses laser beams to measure distances accurately and create detailed 3D maps of the environment.</li>
+          <li>It was tested on advanced wheelchair prototypes for both indoor and outdoor navigation.</li>
+          <li>The high precision allowed detection of even small obstacles, enhancing safety compared to older sensors.</li>
+          <li>Despite its advantages, LIDAR is expensive, heavy, and power-hungry, making it impractical for everyday use.</li>
+        </ul>
+  </div>
+        </ul>
+      </div>
+
+      <button class="accordion">Bump Sensors</button>
+      <div class="panel">
+      <img src="images/pic5.jpg" alt="Ultrasonic Sensor" class="concept-image">
+        <ul>
+          <li>Bump sensors were designed to detect collisions by triggering when the wheelchair physically touched an obstacle.</li>
+          <li>They provided a simple and durable method to prevent ongoing damage to the wheelchair or user.</li>
+          <li>The drawback is that they only alert after contact, which is unsafe for proactive navigation.</li>
+          <li>Because of this reactive nature, bump sensors could not ensure independent and hazard-free movement.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+  <h2>Proposed Solution: Making Wheelchairs Smarter with Vision</h2>
+
+  <p>
+    Imagine a blind wheelchair user trying to navigate a busy sidewalk. Traditional wheelchairs can move, 
+    but they don’t “see” the environment. This is where <strong>computer vision</strong> steps in to make a difference. 
+    By equipping the wheelchair with cameras, it can now perceive the world around it almost like giving it a pair of eyes.
+  </p>
+
+  <h3>Computer Vision–Based Terrain and Obstacle Detection</h3>
+  <ul>
+    <li>
+      <strong>Detect obstacles in real time:</strong> Stereo and monocular cameras allow the wheelchair to see curbs, potholes, drop-offs, and obstacles ahead.
+    </li>
+    <li>
+      <strong>Classify environments:</strong> Algorithms identify sidewalks, intersections, and roadways, helping the wheelchair understand safe paths.
+    </li>
+    <li>
+      <strong>Redundancy for reliability:</strong> If one camera fails due to glare or poor lighting, other sensors continue guiding the user.
+    </li>
+    <li>
+      <strong>Intelligent navigation:</strong> Combines depth perception and environmental understanding to make proactive decisions for safety.
+    </li>
+  </ul>
+  
+  <img src="images/pic6.jpg" alt="Computer vision system diagram" style="display:block; margin:1rem auto; max-width:400px; width:100%; border-radius:0.5rem;">
+  <img src="images/pic7.png" 
+     alt="Wheelchair navigating pathway" 
+     style="display:block; margin:20px auto; width: 100%; max-width:1000px; max-height:500px; height: 300px; border-radius:8px;">
+
+  <h3>Real-Time User Feedback Mechanisms</h3>
+  <ul>
+    <li>
+      <strong>Speech instructions:</strong> The wheelchair can provide spoken guidance to tell users when and where to turn or stop.
+    </li>
+    <li>
+      <strong>Audio tones:</strong> Simple sound alerts indicate nearby obstacles or hazards.
+    </li>
+    <li>
+      <strong>Vibration alerts:</strong> Gentle vibrations on the wheelchair handle communicate direction or warnings silently.
+    </li>
+    <li>
+      <strong>Clear, actionable feedback:</strong> Alerts are designed to be intuitive, so users can respond immediately without confusion.
+    </li>
+  </ul>
+
+  <p>
+    Together, these features transform a standard wheelchair into an <strong>intelligent mobility assistant</strong>
+    enhancing independence, preventing accidents, and making navigating any environment safer and more confident.
+  </p>
+</section>
+
+  </main>
+
+  <script>
+  const acc = document.querySelectorAll(".accordion");
+  acc.forEach(button => {
+    button.addEventListener("click", () => {
+      acc.forEach(b => {
+        if (b !== button) {
+          b.classList.remove("active");
+          b.nextElementSibling.style.maxHeight = null;
+        }
+      });
+      // Toggle the clicked panel
+      button.classList.toggle("active");
+      const panel = button.nextElementSibling;
+      panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
+    });
+  });
+
+  // CV Navigation button
+  document.querySelector('.navbrand').addEventListener('click', function(e){
+    e.preventDefault();
+    window.location.href = 'index.html';
+  });
+</script>
+
+</body>
+</html>
