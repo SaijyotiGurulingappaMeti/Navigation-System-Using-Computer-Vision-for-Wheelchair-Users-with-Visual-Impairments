@@ -205,7 +205,7 @@
 
             <nav class="nav-desktop">
 
-                <a href="index.html?reload=true" class="navbrand">CV Navigation</a>
+                <a href="index.html?reload=true" class="navbrand">Content</a>
                 <a href="home.html">Home</a>
                 <a href="concepts.html">Concepts</a>
                 <a href="algorithms.html">Algorithms</a>
@@ -246,6 +246,28 @@
             Two cameras act like a pair of eyes, capturing left and right views.  
             A disparity map is created by comparing pixel differences, helping estimate depth and detect obstacles.
         </p>
+        
+        <h3 style="color: var(--primary); margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.2rem;">How It Works:</h3>
+        <p>
+            Stereo vision mimics human binocular vision by using two cameras positioned at a known distance apart (baseline). 
+            Each camera captures the same scene from a slightly different angle. Objects closer to the cameras appear to shift 
+            more between the two images than distant objects, this shift is called <strong>disparity</strong>.
+        </p>
+        <p>
+            The algorithm performs the following steps:
+        </p>
+        <div style="background-color: var(--accent); padding: 1rem; border-radius: var(--radius-sm); margin: 1rem 0;">
+            <p><strong>1. Image Rectification:</strong> Align both camera images so corresponding points lie on the same horizontal line, simplifying the search for matching pixels.</p>
+            <p><strong>2. Correspondence Matching:</strong> For each pixel in the left image, find the matching pixel in the right image by comparing intensity patterns along the horizontal scan line.</p>
+            <p><strong>3. Disparity Calculation:</strong> Compute the horizontal pixel shift (disparity) between matched points. Larger disparities indicate closer objects.</p>
+            <p><strong>4. Depth Estimation:</strong> Convert disparity to actual distance using the formula: <em>Depth = (Baseline × Focal Length) / Disparity</em></p>
+        </div>
+        <p>
+            The resulting disparity map is a grayscale image where brighter pixels represent closer objects and darker pixels 
+            represent farther objects. This depth information is crucial for identifying obstacles in the wheelchair's path, 
+            such as walls, furniture, curbs, or people.
+        </p>
+        
         <button onclick="toggleDemo('stereoDemo')">Show Demo</button>
         <div class="demo-container" id="stereoDemo">
             <figure>
@@ -267,8 +289,36 @@
       <h2>2. Texture & Shape Filtering (HOG Features)</h2>
       <p>
         Beyond depth, we need to recognize textures and shapes.  
-        The algorithm uses HOG(Histogram of Oriented Gradients) features to highlight edges and patterns, helping classify surfaces like smooth roads, grassy patches, or uneven terrain.
+        The algorithm uses HOG (Histogram of Oriented Gradients) features to highlight edges and patterns, helping classify surfaces like smooth roads, grassy patches, or uneven terrain.
       </p>
+      
+      <h3 style="color: var(--primary); margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.2rem;">How It Works:</h3>
+      <p>
+        HOG is a feature descriptor that captures the distribution of edge orientations in an image. Rather than looking at 
+        individual pixels, HOG analyzes the structure and shape of objects by examining gradients, the rate of change in 
+        intensity values. This makes it particularly effective for object detection and terrain classification.
+      </p>
+      <div style="background-color: var(--accent); padding: 1rem; border-radius: var(--radius-sm); margin: 1rem 0;">
+        <p><strong>1. Gradient Computation:</strong> Calculate the magnitude and direction of intensity changes for each pixel. 
+        Strong gradients typically occur at edges and contours of objects.</p>
+        <p><strong>2. Cell Division:</strong> Divide the image into small spatial regions called cells (e.g., 8×8 pixels). 
+        For each cell, create a histogram of gradient orientations weighted by gradient magnitudes.</p>
+        <p><strong>3. Block Normalization:</strong> Group cells into larger blocks and normalize the histograms to account 
+        for variations in illumination and contrast, making the features more robust.</p>
+        <p><strong>4. Feature Vector Creation:</strong> Concatenate all normalized histograms into a single feature vector 
+        that describes the appearance and shape patterns in the image.</p>
+      </div>
+      <p>
+        In wheelchair navigation, HOG features help distinguish between different terrain types. For example, smooth pavement 
+        produces uniform gradient patterns, while grass or gravel creates more irregular, textured patterns. The system can 
+        also use HOG to detect specific shapes like curbs, ramps, doorways, or the silhouettes of people and animals, 
+        enabling safer and more informed navigation decisions.
+      </p>
+      <p>
+        By combining HOG-based terrain classification with depth information from stereo vision, the wheelchair can not only 
+        detect obstacles but also understand the navigability of different surfaces ahead.
+      </p>
+      
       <button onclick="toggleDemo('hogDemo')">Show Demo</button>
       <div class="demo-container" id="hogDemo">
         <img src="images/pic10.png" alt="HOG Features Visualization">
@@ -282,6 +332,47 @@
         To detect moving objects or obstacles, the system uses background subtraction to highlight changes in the scene.  
         These changes are mapped into an occupancy grid to decide safe paths for navigation.
       </p>
+      
+      <h3 style="color: var(--primary); margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.2rem;">How It Works:</h3>
+      <p>
+        Background subtraction is a motion detection technique that separates moving foreground objects from the static 
+        background scene. This is essential for identifying dynamic obstacles like people walking, pets running, or 
+        objects being moved, which stereo vision alone might not adequately flag as hazards.
+      </p>
+      <div style="background-color: var(--accent); padding: 1rem; border-radius: var(--radius-sm); margin: 1rem 0;">
+        <p><strong>1. Background Model Creation:</strong> Build a statistical model of the background by observing the 
+        scene over several frames. Common methods include Gaussian Mixture Models (GMM) or running average techniques that 
+        learn what pixels typically look like when nothing is moving.</p>
+        <p><strong>2. Foreground Detection:</strong> Compare each new frame against the background model. Pixels that 
+        differ significantly from the model are classified as foreground (moving objects).</p>
+        <p><strong>3. Morphological Operations:</strong> Apply image processing techniques like erosion and dilation to 
+        remove noise and fill gaps, producing cleaner foreground masks.</p>
+        <p><strong>4. Blob Detection:</strong> Identify connected regions (blobs) in the foreground mask that represent 
+        distinct moving objects.</p>
+      </div>
+      
+      <h3 style="color: var(--primary); margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: 1.2rem;">Occupancy Grids:</h3>
+      <p>
+        Once moving objects are detected, the system must represent this information in a way that supports navigation 
+        planning. This is where <strong>occupancy grids</strong> come in, a spatial representation that divides the 
+        environment into a grid of cells.
+      </p>
+      <div style="background-color: var(--accent); padding: 1rem; border-radius: var(--radius-sm); margin: 1rem 0;">
+        <p><strong>Grid Structure:</strong> The navigable space around the wheelchair is divided into a 2D grid, where 
+        each cell represents a small area (e.g., 10cm × 10cm).</p>
+        <p><strong>Occupancy Probability:</strong> Each cell stores a probability value indicating the likelihood that 
+        the space is occupied. Values near 1.0 mean high confidence of an obstacle; values near 0.0 indicate free space.</p>
+        <p><strong>Sensor Fusion:</strong> Information from stereo vision (depth), HOG features (terrain type), and 
+        background subtraction (moving objects) are combined to update the occupancy grid in real-time.</p>
+        <p><strong>Path Planning:</strong> Navigation algorithms (like A* or Dijkstra's algorithm) use the occupancy grid 
+        to compute the safest and shortest path, avoiding cells with high occupancy probabilities.</p>
+      </div>
+      <p>
+        By integrating background subtraction with occupancy grids, the wheelchair navigation system gains the ability to 
+        react to dynamic environments. For example, if a person suddenly steps into the path, background subtraction detects 
+        the motion, updates the occupancy grid to mark those cells as occupied, and triggers path replanning to avoid collision.
+      </p>
+      
       <button onclick="toggleDemo('backgroundDemo')">Show Demo</button>
       <div class="demo-container" id="backgroundDemo">
         <img src="images/pic11.jpg" alt="Background Subtraction Example">
@@ -307,7 +398,7 @@
       Based on these features, the system performs obstacle and terrain detection to identify safe or unsafe paths. 
       Then, a path planning module powered by machine learning/AI selects the optimal route. 
       The system provides feedback to the user through audio or vibration cues, and finally, movement control is executed 
-      in coordination with the wheelchair’s motor system. This process continues in a loop until the destination is reached.
+      in coordination with the wheelchair's motor system. This process continues in a loop until the destination is reached.
     </p>
   </section>
 
